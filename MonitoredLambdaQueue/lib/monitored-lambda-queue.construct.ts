@@ -6,7 +6,7 @@ import { Construct } from 'constructs';
 import { MonitoredDeadLetterQueue } from './monitored-dead-letter-queue.construct';
 import { IAlarmAction } from 'aws-cdk-lib/aws-cloudwatch';
 
-export class LambdaQueue extends Construct {
+export class MonitoredLambdaQueue extends Construct {
   messageQueue: Queue;
   deadLetterQueue: Queue;
 

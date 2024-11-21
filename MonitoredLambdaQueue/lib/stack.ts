@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { IFunction, Function, Code, Runtime } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
-import { LambdaQueue } from './monitored-lambda-queue.construct';
+import { MonitoredLambdaQueue } from './monitored-lambda-queue.construct';
 import { SnsAction } from 'aws-cdk-lib/aws-cloudwatch-actions';
 import { Topic } from 'aws-cdk-lib/aws-sns';
 import { EmailSubscription } from 'aws-cdk-lib/aws-sns-subscriptions';
@@ -25,7 +25,7 @@ export class ExampleStack extends cdk.Stack {
         }`),
     });
 
-    const monitoredQueue = new LambdaQueue(
+    const monitoredQueue = new MonitoredLambdaQueue(
       this,
       'MonitoredQueue',
       exampleLambda,
