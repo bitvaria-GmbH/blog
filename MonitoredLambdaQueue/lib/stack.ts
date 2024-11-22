@@ -10,9 +10,10 @@ export class ExampleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const errorTopic = new Topic(this, 'DLQEmailTopic', {
-      topicName: 'DLQEmailTopic',
+    const errorTopic = new Topic(this, 'ErrorNotificationTopic', {
+      topicName: 'ErrorNotificationTopic',
     });
+    errorTopic.addSubscription(new EmailSubscription('example@email.com'));
 
     const alarmAction = new SnsAction(errorTopic);
 
@@ -32,7 +33,5 @@ export class ExampleStack extends cdk.Stack {
       alarmAction,
       3
     );
-
-    errorTopic.addSubscription(new EmailSubscription('example@email.com'));
   }
 }
